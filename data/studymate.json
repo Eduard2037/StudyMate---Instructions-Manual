@@ -1,0 +1,61 @@
+{
+  "courses": [
+    {
+      "creditHours": 3,
+      "instructor": "Dr. Smith",
+      "name": "Calculus I",
+      "description": "Introduction to limits and derivatives.",
+      "semester": "Fall 2025",
+      "id": 101
+    },
+    {
+      "creditHours": 5,
+      "instructor": "Dr. Spataru",
+      "name": "Programming III",
+      "description": "Java, collections, streams, and threads.",
+      "semester": "Fall 2025",
+      "id": 102
+    },
+    {
+      "creditHours": 10,
+      "instructor": "prof",
+      "name": "Math",
+      "description": "math",
+      "semester": "2",
+      "id": 404
+    }
+  ],
+  "habits": [],
+  "assignments": [
+    {
+      "dueDate": "2025-12-22",
+      "description": "Solve problems 1\u201320 from chapter 1.",
+      "id": 1,
+      "title": "Limits Worksheet",
+      "priority": 1,
+      "courseId": 101,
+      "status": "Pending"
+    },
+    {
+      "dueDate": "2025-12-27",
+      "description": "Prepare for in-class quiz.",
+      "id": 2,
+      "title": "Derivatives Quiz",
+      "priority": 2,
+      "courseId": 101,
+      "status": "Pending"
+    },
+    {
+      "dueDate": "2025-12-20",
+      "description": "Implement stream-based analytics.",
+      "id": 3,
+      "title": "Streams Lab",
+      "priority": 1,
+      "courseId": 102,
+      "status": "In Progress"
+    }
+  ],
+  "notes": [],
+  "tests": [],
+  "habitLogs": []
+}

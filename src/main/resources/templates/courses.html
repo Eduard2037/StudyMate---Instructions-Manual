@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Courses - StudyMate</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">StudyMate</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/courses">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/assignments">Assignments</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+                    <span th:text="${successMessage}">Success</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <span th:text="${errorMessage}">Error</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2>Your Courses</h2>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCourseModal">Add
+                        Course</button>
+                </div>
+
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Instructor</th>
+                                    <th>Semester</th>
+                                    <th>Credit Hours</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:if="${courses.empty}">
+                                    <td colspan="6" class="text-center text-muted">No courses found. Add one to get
+                                        started!</td>
+                                </tr>
+                                <tr th:each="course : ${courses}">
+                                    <td th:text="${course.courseId}">101</td>
+                                    <td th:text="${course.courseName}">Intro to CS</td>
+                                    <td th:text="${course.instructorName}">Dr. Smith</td>
+                                    <td th:text="${course.semester}">Fall 2025</td>
+                                    <td th:text="${course.creditHours}">3</td>
+                                    <td th:text="${course.description}">Description...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Course Modal -->
+    <div class="modal fade" id="addCourseModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Course</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form th:action="@{/courses}" method="post" th:object="${newCourse}">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Course ID</label>
+                            <input type="number" class="form-control" name="courseId" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Course Name</label>
+                            <input type="text" class="form-control" name="courseName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Instructor</label>
+                            <input type="text" class="form-control" name="instructorName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Semester</label>
+                            <input type="text" class="form-control" name="semester" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Credit Hours</label>
+                            <input type="number" class="form-control" name="creditHours" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control" name="description"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save Course</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-4 my-4 border-top text-center text-muted">
+        &copy; 2026 StudyMate
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
